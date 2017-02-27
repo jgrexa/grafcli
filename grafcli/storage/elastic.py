@@ -7,7 +7,10 @@ from grafcli.exceptions import DocumentNotFound
 from grafcli.storage import Storage
 from grafcli.utils import try_import
 
-elasticsearch = try_import('elasticsearch.Elasticsearch')
+try:
+    from elasticsearch import Elasticsearch
+except ImportError:
+    raise ImportError('elasticsearch module not found')
 
 DASHBOARD_TYPE = "dashboard"
 SEARCH_LIMIT = 100

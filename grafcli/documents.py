@@ -277,7 +277,12 @@ class Panel(Document):
     def _load(self, source):
         source['id'] = self._id
         self._source = source
-        self._name = "{}-{}".format(self._id, slug(self.title))
+        try:
+            self._name = "{}-{}".format(self._id, slug(self.title))
+        except:
+            print('WARNING: invalid title, trying to go around..')
+        finally:
+            self._name = 'dummy-name'
 
     def set_id(self, id):
         self._id = id
